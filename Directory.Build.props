@@ -26,6 +26,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <RestoreLockedMode>false</RestoreLockedMode>
+    <RestoreForceEvaluate>true</RestoreForceEvaluate>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <Authors>Matthias Wolf</Authors>
     <Company>Mawosoft</Company>
     <Product>dependa-lab: Dependency Playground</Product>
