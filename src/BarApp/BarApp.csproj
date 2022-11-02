@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net480;net6.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <IsPackable>true</IsPackable>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>This is BarApp</Description>
+    <PackageId>Mawosoft.BarApp</PackageId>
+    <PackageType>DotnetTool</PackageType>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>BarApp</ToolCommandName>
+    <PackageDescription>BarApp does something.</PackageDescription>
+    <PackageTags>foo, bar, fubar</PackageTags>
+    <PackageIcon>packageIcon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mawosoft/dependa-lab</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mawosoft/dependa-lab</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageReleaseNotes></PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Properties/packageIcon.png" Pack="true" PackagePath="/"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FooLib\FooLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" />
+  </ItemGroup>
+
+</Project>

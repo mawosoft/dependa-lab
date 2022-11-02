@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>This is FooLib</Description>
+    <PackageId>Mawosoft.FooLib</PackageId>
+    <PackageDescription>FooLib does something</PackageDescription>
+    <PackageTags>foo, bar, fubar</PackageTags>
+    <PackageIcon>packageIcon.png</PackageIcon>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mawosoft/dependa-lab</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/mawosoft/dependa-lab</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <DebugType>embedded</DebugType>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <EnablePackageValidation>false</EnablePackageValidation>
+    <PackageValidationBaselineVersion></PackageValidationBaselineVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Properties/packageIcon.png" Pack="true" PackagePath="/"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="$(AssemblyName).Tests.StableBDN" />
+    <InternalsVisibleTo Include="$(AssemblyName).Tests.NightlyBDN" />
+  </ItemGroup>
+
+</Project>

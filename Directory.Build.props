@@ -1,0 +1,40 @@
+<Project>
+
+  <PropertyGroup Condition="'$(CI)' == ''">
+    <CI>false</CI>
+    <!-- GitHub already defines CI -->
+    <CI Condition="'$(TF_BUILD)' == 'true' or '$(APPVEYOR)' != ''">true</CI>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NetFxTfm Condition="'$(NetFxTfm)' == ''">net462</NetFxTfm>
+    <NetFxTfm Condition="! $([MSBuild]::IsOSPlatform('windows'))"></NetFxTfm>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- Pinning still has some kinks. See https://github.com/NuGet/Home/issues/11952 -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+    <ContinuousIntegrationBuild>$(CI)</ContinuousIntegrationBuild>
+    <Deterministic>$(CI)</Deterministic>
+    <TreatWarningsAsErrors>$(CI)</TreatWarningsAsErrors>
+    <!-- Regression in .NET SDK 6.0.300 when using Central Package Management:
+         NU1507 if multiple feeds are used without package source mapping. -->
+    <NoWarn>$(NoWarn);NU1507</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Matthias Wolf</Authors>
+    <Company>Mawosoft</Company>
+    <Product>dependa-lab: Dependency Playground</Product>
+    <Copyright>Copyright (c) 2022 Matthias Wolf, Mawosoft</Copyright>
+    <Version>0.1.0-dev</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>
