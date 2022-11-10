@@ -3,6 +3,6 @@
 version: 2
 updates:
   - package-ecosystem: "nuget"
-    directory: "/"
+    directory: "/sample1"
     schedule:
       interval: "monthly"
