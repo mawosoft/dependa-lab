@@ -79,15 +79,14 @@ jobs:
       run: |
         . ./build/startNativeExecution.ps1
         Set-Alias exec Start-NativeExecution
-        $BdnNightlyVersion = & ./build/findLatestBdnNightlyVersion.ps1 -Verbose
-        exec { dotnet restore "-p:BDNNightlyVersion=$BdnNightlyVersion" }
+        exec { dotnet restore }
         # Parallel builds causing trouble here
-        exec { dotnet build ./src/FooLib/FooLib.csproj -c Debug --no-restore }
-        exec { dotnet build ./src/FooLib/FooLib.csproj -c Release --no-restore }
-        exec { dotnet build -c Debug --no-restore }
-        exec { dotnet build -c Release --no-restore }
-        exec { dotnet pack ./src/FooLib/FooLib.csproj -c Release --no-build -o ./Packages }
-        exec { dotnet pack ./src/BarApp/BarApp.csproj -c Release --no-build -o ./Packages }
+        exec { dotnet build ./sample1/src/FooLib/FooLib.csproj -c Debug --no-restore }
+        exec { dotnet build ./sample1/src/FooLib/FooLib.csproj -c Release --no-restore }
+        exec { dotnet build ./sample1/ -c Debug --no-restore }
+        exec { dotnet build ./sample1/ -c Release --no-restore }
+        exec { dotnet pack ./sample1/src/FooLib/FooLib.csproj -c Release --no-build -o ./Packages }
+        exec { dotnet pack ./sample1/src/BarApp/BarApp.csproj -c Release --no-build -o ./Packages }
     - name: Upload Binlogs
       if: ${{ always() }}
       uses: actions/upload-artifact@v3
@@ -106,7 +105,7 @@ jobs:
       run: |
         $tfms = @("net6.0")
         if ($IsWindows) { $tfms += "net48" }
-        ./build/test.ps1 -p ./tests/FooLib.Tests/StableBDN/FooLib.Tests.StableBDN.csproj, ./tests/FooLib.Tests/NightlyBDN/FooLib.Tests.NightlyBDN.csproj, ./tests/BarApp.Tests/BarApp.Tests.csproj -c Debug, Release -f $tfms -v detailed -r ./TestResults -ff:$${{ strategy.fail-fast }}
+        ./build/test.ps1 -p ./sample1/tests/FooLib.Tests/StableBDN/FooLib.Tests.StableBDN.csproj, ./sample1/tests/FooLib.Tests/NightlyBDN/FooLib.Tests.NightlyBDN.csproj, ./sample1/tests/BarApp.Tests/BarApp.Tests.csproj -c Debug, Release -f $tfms -v detailed -r ./TestResults -ff:$${{ strategy.fail-fast }}
     - name: Upload Test results
       if: ${{ always() && steps.test.outcome != 'skipped' }}
       uses: actions/upload-artifact@v3
