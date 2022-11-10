@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <NetFxTfm Condition="'$(NetFxTfm)' == ''">net462</NetFxTfm>
+    <NetFxTfm Condition="'$(NetFxTfm)' == ''">net48</NetFxTfm>
     <NetFxTfm Condition="! $([MSBuild]::IsOSPlatform('windows'))"></NetFxTfm>
   </PropertyGroup>
 
@@ -23,6 +23,21 @@
     <!-- Regression in .NET SDK 6.0.300 when using Central Package Management:
          NU1507 if multiple feeds are used without package source mapping. -->
     <NoWarn>$(NoWarn);NU1507</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- These all default to false and also have cli switches -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <!--
+    <RestoreLockedMode>true</RestoreLockedMode>
+    <RestoreForceEvaluate>true</RestoreForceEvaluate>
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation> 
+    -->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BDNStableVersion>0.13.1</BDNStableVersion>
+    <BDNNightlyVersion>0.13.2.1995</BDNNightlyVersion>
   </PropertyGroup>
 
   <PropertyGroup>
