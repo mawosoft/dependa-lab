@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net480;net6.0</TargetFrameworks>
+    <TargetFrameworks>net48;net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <NeutralLanguage>en-US</NeutralLanguage>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
@@ -14,7 +14,7 @@
     <Description>This is BarApp</Description>
     <PackageId>Mawosoft.BarApp</PackageId>
     <PackageType>DotnetTool</PackageType>
-    <PackAsTool>true</PackAsTool>
+    <PackAsTool Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">true</PackAsTool>
     <ToolCommandName>BarApp</ToolCommandName>
     <PackageDescription>BarApp does something.</PackageDescription>
     <PackageTags>foo, bar, fubar</PackageTags>
