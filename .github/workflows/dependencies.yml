@@ -23,6 +23,7 @@ jobs:
       run: |
         . ./build/startNativeExecution.ps1
         Start-NativeExecution { dotnet restore ./sample1/ }
+        Start-NativeExecution { dotnet restore ./sample2/ }
     - name: Check sample1 dependencies
       id: deps_sample1
       run: ./build/checkDependencies.ps1 -Projects ./sample1/ -ArtifactName DepsSample1 -Token (ConvertTo-SecureString ${{ secrets.GITHUB_TOKEN }} -AsPlainText)

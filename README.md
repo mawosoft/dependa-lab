@@ -24,6 +24,7 @@ Contains:
 - Deprecated top-level (direct) dependency in Directory.Package.Props
 - Multiple deprecated and vulnerable transitive (indirect) dependencies
 
+Results
 - Dependabot Version Updates
   - Recognizes all outdated top-level dependencies, even correctly updates the version property definition.
   - Not yet tested: `VersionOverride` attribute, `GlobalPackageReference`
@@ -39,3 +40,13 @@ Contains
 - Literal versions in *.csproj files, including outdated, deprecated, and vulnerable top-level dependencies
 - Multiple deprecated and vulnerable transitive dependencies
 
+Results
+- Dependabot Version Updates
+  - Recognizes all outdated top-level dependencies
+- Dependabot Alerts
+  - Does recognize vulnerable top-level dependency
+  - Does **NOT** recognize deprecated top-level dependency
+  - Does **NOT** recognize vulnerable/deprecated transitive dependencies
+- Dependency Graph
+  - Recognizes all top-level dependency versions
+  - Does **NOT** recognize any transitive dependency versions
