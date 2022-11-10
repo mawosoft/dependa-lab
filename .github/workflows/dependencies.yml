@@ -23,12 +23,20 @@ jobs:
       run: |
         . ./build/startNativeExecution.ps1
         Start-NativeExecution { dotnet restore ./sample1/ }
-    - name: Check project dependencies
-      id: dependencies
-      run: ./build/checkDependencies.ps1 -Projects ./sample1/ -Token (ConvertTo-SecureString ${{ secrets.GITHUB_TOKEN }} -AsPlainText)
+    - name: Check sample1 dependencies
+      id: deps_sample1
+      run: ./build/checkDependencies.ps1 -Projects ./sample1/ -ArtifactName DepsSample1 -Token (ConvertTo-SecureString ${{ secrets.GITHUB_TOKEN }} -AsPlainText)
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ${{ steps.dependencies.outputs.ArtifactName }}
-        path: ${{ steps.dependencies.outputs.ArtifactPath }}
+        name: ${{ steps.deps_sample1.outputs.ArtifactName }}
+        path: ${{ steps.deps_sample1.outputs.ArtifactPath }}
         #retention-days: 5 # Don't limit because this is run manually only.
+    - name: Check sample2 dependencies
+      id: deps_sample2
+      run: ./build/checkDependencies.ps1 -Projects ./sample2/ -ArtifactName DepsSample2 -Token (ConvertTo-SecureString ${{ secrets.GITHUB_TOKEN }} -AsPlainText)
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ steps.deps_sample2.outputs.ArtifactName }}
+        path: ${{ steps.deps_sample2.outputs.ArtifactPath }}

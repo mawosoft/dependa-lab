@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Condition="'$(CI)' == ''">
+    <CI>false</CI>
+    <!-- GitHub already defines CI -->
+    <CI Condition="'$(TF_BUILD)' == 'true' or '$(APPVEYOR)' != ''">true</CI>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <ContinuousIntegrationBuild>$(CI)</ContinuousIntegrationBuild>
+    <Deterministic>$(CI)</Deterministic>
+    <TreatWarningsAsErrors>$(CI)</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="System.Net.Http" Version="4.3.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.0" />
+  </ItemGroup>
+
+</Project>

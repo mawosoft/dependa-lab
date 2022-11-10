@@ -12,3 +12,30 @@ Playground for managing .NET/NuGet dependencies with GitHub *Dependabot* and *De
 Alternatives:
 - Custom solution for Dependency Alerts based on `dotnet list package`. Successfully used in a number of projects. See [sample output](https://github.com/mawosoft/dependa-lab/issues/4).
 - ???
+
+## Tests
+
+### Sample1
+
+Contains:
+- Version as property defined in Directory.Build.Props, used in Directory.Package.Props
+- PackageVersion in Directory.Package.Props
+- Multiple outdated as version property and literals in Directory.Package.Props
+- Deprecated top-level (direct) dependency in Directory.Package.Props
+- Multiple deprecated and vulnerable transitive (indirect) dependencies
+
+- Dependabot Version Updates
+  - Recognizes all outdated top-level dependencies, even correctly updates the version property definition.
+  - Not yet tested: `VersionOverride` attribute, `GlobalPackageReference`
+- Dependabot Alerts
+  - Does **NOT** recognize deprecated top-level dependency
+  - Does **NOT** recognize vulnerable/deprecated transitive dependencies
+- Dependency Graph
+  - Does **NOT** recognize any version numbers at all
+
+### Sample2
+
+Contains
+- Literal versions in *.csproj files, including outdated, deprecated, and vulnerable top-level dependencies
+- Multiple deprecated and vulnerable transitive dependencies
+

@@ -37,6 +37,4 @@
     <InternalsVisibleTo Include="$(AssemblyName).Tests.NightlyBDN" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
-
 </Project>

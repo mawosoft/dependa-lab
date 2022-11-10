@@ -6,3 +6,7 @@ updates:
     directory: "/sample1"
     schedule:
       interval: "monthly"
+  - package-ecosystem: "nuget"
+    directory: "/sample2"
+    schedule:
+      interval: "monthly"
