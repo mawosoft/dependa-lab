@@ -50,3 +50,14 @@ Results
 - Dependency Graph
   - Recognizes all top-level dependency versions
   - Does **NOT** recognize any transitive dependency versions
+
+### Sample3
+
+Quick and dirty use of Dependency Submission API.
+
+Results
+- Dependabot Alerts
+  - Does recognize vulnerable transitive dependency if submitted with `relationship: indirect`.
+- Dependency Graph
+  - Display does **NOT** reflect hierarchy, but rather is a flat list of all the `resolved` entries in a submitted manifest, **without** distinguishing between top-level and transitive items.
+
