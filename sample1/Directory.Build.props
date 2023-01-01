@@ -36,7 +36,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <BDNStableVersion>0.13.1</BDNStableVersion>
+    <BDNStableVersion>0.13.3</BDNStableVersion>
     <BDNNightlyVersion>0.13.2.1995</BDNNightlyVersion>
   </PropertyGroup>
 
